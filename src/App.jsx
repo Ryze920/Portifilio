@@ -4,15 +4,18 @@ import CustomCursor from "./components/CustomCursor";
 import Tab from "./components/Tab";
 
 import HomePage from "./Pages/HomePage";
-
+import AppRoutes from "../src/routes/allroutes";
+import RotatingText from "./components/RotatingText";
 export default function App() {
   return (
     <>
-      {/* <Header />
-      <HeroSection />
+      <Header />
+      {/* <HeroSection />
       <CustomCursor />
       <Tab /> */}
-      <HomePage />
+      {/* <HomePage /> */}
+      <AppRoutes />
+      {/* <RotatingText /> */}
     </>
   );
 }

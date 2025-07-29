@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Devskills from "./Devskills";
 import Myworks from "./Myworks";
+import Mainskill from "./Devskils/Mainskill";
 
 const Tabs = () => {
   const [selectedTab, setSelectedTab] = useState("devSkills"); // State untuk menyimpan tab yang dipilih
@@ -8,10 +9,10 @@ const Tabs = () => {
   return (
     <div className="w-full mx-auto bg-transparent">
       <h1
-        className="text-center text-3xl lg:text-6xl 
+        className="text-center text-3xl lg:text-5xl  mb-5
       font-bold p-3"
       >
-        My Skill
+        Expirience
       </h1>
       <div className="flex   justify-center ">
         <div className=" lg:me-[100px] items-center ">
@@ -43,7 +44,8 @@ const Tabs = () => {
       {/* Tab Content */}
       <div className="mt-4">
         {selectedTab === "devSkills" ? (
-          <div className="p-4 bg-gray-100 rounded-md shadow-sm">
+          <div className="p-0 flex items-center justify-center mb-0  md:m-[80px] w-[auto] bg-gray-400 rounded-md shadow-sm bg-opacity-[0.3] ">
+            {/* <h1 className="font-bold text-7xl ">Ngeprompt GPT </h1> */}
             <Devskills />
           </div>
         ) : (

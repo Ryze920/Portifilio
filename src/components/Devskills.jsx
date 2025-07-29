@@ -1,10 +1,10 @@
 import React from "react";
+import Mainskill from "./Devskils/Mainskill";
 
 const Devskills = () => {
   return (
-    <div className="bg-violet-900">
-      <h1>Devskills</h1>
-      <h2>AUAKSKS</h2>
+    <div className=" ">
+      <Mainskill />
     </div>
   );
 };
