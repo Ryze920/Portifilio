@@ -24,7 +24,7 @@ const Foto = () => {
           <img
             src={Fotosaya}
             alt="Foto Profil"
-            className="w-full h-auto rounded-full object-contain mix-blend-soft-sceen"
+            className="w-full h-auto rounded-full object-contain mix-blend-lighten"
           />
         </motion.div>
 

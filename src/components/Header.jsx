@@ -41,26 +41,24 @@ const Header = () => {
         {/* DesktopNvigation */}
 
         <nav className="lg:flex hidden space-x-8">
-          {["Home", "About", "Project", "Expirience", "ContactUs"].map(
-            (item, index) => (
-              <motion.a
-                key={item}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 100,
-                  damping: 20,
-                  delay: 0.7 + index * 0.2,
-                }}
-                className="relative text-gray-800 dark:text-gray-200 hover:violet-600 dark:hover:text-violet-600 font-medium transition-colors duration-300 group "
-                href="#"
-              >
-                {item}
-                <span className="absolute bottom-0  left-0 w-0 h-0.5 bg-violet-600 group-hover:w-full transition-all duration-300"></span>
-              </motion.a>
-            )
-          )}
+          {["Home", "About", "Expirience", "ContactUs"].map((item, index) => (
+            <motion.a
+              key={item}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                type: "spring",
+                stiffness: 100,
+                damping: 20,
+                delay: 0.7 + index * 0.2,
+              }}
+              className="relative text-gray-800 dark:text-gray-200 hover:violet-600 dark:hover:text-violet-600 font-medium transition-colors duration-300 group "
+              href="#"
+            >
+              {item}
+              <span className="absolute bottom-0  left-0 w-0 h-0.5 bg-violet-600 group-hover:w-full transition-all duration-300"></span>
+            </motion.a>
+          ))}
         </nav>
 
         {/* Sosial Media */}
@@ -74,7 +72,8 @@ const Header = () => {
             }}
             className="text-gray-700 dark:text-gray-300 hover:text-violet-600 
             dark:hover:text-violet-400 transition-colors duration-300 "
-            href=""
+            href="https://github.com/Ryze920"
+            target="_blank"
           >
             <FiGithub className="w-5 h-5" />
           </motion.a>
@@ -87,7 +86,8 @@ const Header = () => {
             }}
             className="text-gray-700 dark:text-gray-300 hover:text-violet-600 
             dark:hover:text-violet-400 transition-colors duration-300 "
-            href=""
+            href="https://www.linkedin.com/in/yosua-1277b1355/"
+            target="_blank"
           >
             <FiLinkedin className="w-5 h-5" />
           </motion.a>
@@ -100,7 +100,8 @@ const Header = () => {
             }}
             className="text-gray-700 dark:text-gray-300 hover:text-violet-600 
             dark:hover:text-violet-400 transition-colors duration-300 "
-            href=""
+            href="https://www.instagram.com/ryze_092/"
+            target="_blank"
           >
             <FiInstagram className="w-5 h-5" />
           </motion.a>
@@ -170,13 +171,16 @@ const Header = () => {
         {/* Sosial Media  */}
         <div className="pt-4 border-gray-200 dark:border-gray-700">
           <div className="flex space-x-5">
-            <a href="#">
+            <a href="https://github.com/Ryze920" target="_blank">
               <FiGithub className="h-5 w-5 text-gray-300" />
             </a>
-            <a href="#">
+            <a
+              target="_blank"
+              href="https://www.linkedin.com/in/yosua-1277b1355/"
+            >
               <FiLinkedin className="h-5 w-5 text-gray-300" />
             </a>
-            <a href="#">
+            <a href="https://www.instagram.com/ryze_092/" target="_blank">
               <FiInstagram className="h-5 w-5 text-gray-300" />
             </a>
           </div>

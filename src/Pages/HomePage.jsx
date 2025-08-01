@@ -4,6 +4,7 @@ import HeroSection from "../components/HeroSection";
 import CustomCursor from "../components/CustomCursor";
 import Tab from "../components/Tab";
 import AboutMe from "../components/AboutMe";
+import Lagu from "../components/Lagu";
 const HomePage = () => {
   return (
     <div
@@ -12,9 +13,9 @@ const HomePage = () => {
     >
       <HeroSection />
       <CustomCursor />
-
-      <Tab />
       <AboutMe />
+      <Tab />
+      <Lagu />
     </div>
   );
 };

@@ -9,8 +9,12 @@ const MainWorks = () => {
     >
       {mywork.map((item, index) => (
         <div className="group relative items-center justify-center overflow-hidden hover:shadow-xl hover:shadow-black/30 transition ">
-          <div key={index} className="   h-90 w-full">
-            <img className="" src={item.foto} alt={item.Title} />
+          <div key={index} className=" aspect-[4/5]  h-90 w-full">
+            <img
+              className="object-cover h-full w-full blur-[1px] rounded-md"
+              src={item.foto}
+              alt={item.Title}
+            />
           </div>
           <div
             className=" absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black
@@ -20,13 +24,18 @@ const MainWorks = () => {
             className="absolute inset-0 flex flex-col items-center justify-center px-9 text-center translate-y-[40%]
               group-hover:translate-y-0 transition-all"
           >
-            <h1 className="text-3xl font-bold text-white">{item.Title}</h1>
+            <h1 className="text-3xl mb-5 font-bold text-white">{item.Title}</h1>
             <p className="text-md  text-white mb-3 hidden  group-hover:block transition-opacity duration-400">
               {item.desc}
             </p>
-            <button className="rounded-full hidden group-hover:block transition-all bg-neutral-900 py-2 px-3.5 text-sm capitalize text-white">
+            <a
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full hidden group-hover:block transition-all bg-neutral-900 py-2 px-3.5 text-sm capitalize text-white"
+            >
               See More
-            </button>
+            </a>
           </div>
         </div>
       ))}
