@@ -1,15 +1,19 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Spline from "@splinetool/react-spline";
+import { Clo, Container, Row } from "react";
+import { fromJSON } from "postcss";
+import RotatingText from "./RotatingText";
 
-const HeroSection = () => {
+const HeroSection = ({ home }) => {
   return (
     <section
-      className="h-screen bg-gradient-to-b
-  from-violet-900 to-black flex xl:flex-row flex-col-reverse items-center 
-  justify-between lg:px-24 px-10 relative overflow-hidden"
+      id="home"
+      className="h-screen bg-transparent flex xl:flex-row flex-col-reverse items-center
+      justify-between lg:px-24 px-10 relative overflow-hidden md:mt-[50px] "
     >
-      <div className="z-40 lg:mb-0 mb-[20] ">
+      {/* Ledt Section */}
+      <div className="z-40 lg:mb-[0%] mb-[-55%]   min-w-[65%]">
         <motion.h1
           initial={{ opacity: 0, y: 80 }}
           animate={{ opacity: 1, y: 0 }}
@@ -22,8 +26,8 @@ const HeroSection = () => {
           }}
           className="text-5xl md:text-7xl lg:text-8xl font-bold z-10 mb-6 "
         >
-          Hello! Am i <br />
-          Yosua Kurniawan
+          Hello! I'm <br />
+          <RotatingText />
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 80 }}
@@ -35,26 +39,21 @@ const HeroSection = () => {
             delay: 1.8,
             duration: 1.5,
           }}
-          className="text-xl md:text-1xl lg:text-1xl text-purple-200 max-w-2xl "
+          className="text-xl md:text-1xl lg:text-2xl text-purple-200 max-w-2xl "
         >
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit, ad
-          facilis. Atque dolorem eos qui cum quis impedit consequuntur! Vitae,
-          nemo, suscipit nobis tempora repellat voluptate iure soluta ullam
-          officiis labore, iste incidunt nostrum. Laborum, sapiente! Accusantium
-          quos, odio delectus voluptatum ipsum porro quibusdam impedit aut animi
-          neque, deserunt est cum quod.
+          Alongside my passion for web and app development, I am a visual
+          storyteller at heart. As a freelance social media designer and video
+          editor, I enjoy bringing ideas to life through engaging visuals. My
+          hobbies in photography and creative editing inspire me to create
+          beautiful and functional designs, both on and off the screen.
         </motion.p>
       </div>
-
       {/* Kanan Section */}
 
-      <div className="pt-10">
-        <h1>3d</h1>
-        <Spline
-          className="absolute xl:right-[-18%] xl:top-[-12%] sm:top-[30%] top-0 sm:w-full sm:h-96  "
-          scene="https://prod.spline.design/DoWkaMYpYnc0lpR8/scene.splinecode"
-        />
-      </div>
+      <Spline
+        className=" absolute scale-[80%]  lg:scale-[100%] xl:right-[-28%] p-0 w-full right-0 lg:top-0 top-[-20%] lg:top-[-10%]  z-0 "
+        scene="https://prod.spline.design/A6xBgeNpMShMRxt6/scene.splinecode"
+      />
     </section>
   );
 };
