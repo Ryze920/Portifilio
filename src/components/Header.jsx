@@ -5,6 +5,24 @@ import { useState } from "react";
 import { FiGithub, FiInstagram, FiLinkedin, FiX, FiMenu } from "react-icons/fi";
 
 const Header = () => {
+  // Form PESAN
+  const [nama, setNama] = useState("");
+  const [Subject, setSubject] = useState("");
+  const [pesan, setPesan] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const subject = `${Subject} - ${nama}`;
+    const body = `Nama: ${nama}\nKeterangan: ${Subject}\n\nPesan:\n${pesan}`;
+
+    const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=yosuakurniawan90@email.com&su=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+
+    window.open(gmailLink, "_blank"); // ganti dengan window.location.href jika ingin di tab yang sama
+  };
+
   // Togglle Menu Di open atau tidak
   const [isBuka, setisBuka] = useState(false);
   const toggleMenu = () => setisBuka(!isBuka);
@@ -15,7 +33,7 @@ const Header = () => {
   const kondisiformTutup = () => setisformBuka(false);
 
   return (
-    <header className="absolute w-full z-50 transition-all transition-300">
+    <header className="absolute w-full z-50 transition-all transition-300 overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 md:h-20">
         {/* Logo */}
         <motion.div
@@ -30,7 +48,7 @@ const Header = () => {
           }}
           className="flex items-center"
         >
-          <div className="h-10 w-10 rounded-xl bg-gradient-to-r from-gray-500 to-gray-100 flex items-center justify-center text-purple-600 font-bold text-xl mr-3 ">
+          <div className="h-10 w-10 rounded-xl bg-gradient-to-r from-gray-500 to-gray-100 flex items-center justify-center text-purple-600 font-bold text-xl mr-4 ">
             Y
           </div>
           <span className="text-xl font-bold  bg-gradient-to-r from-gray-300 to-gray-100 bg-clip-text text-transparent">
@@ -41,24 +59,30 @@ const Header = () => {
         {/* DesktopNvigation */}
 
         <nav className="lg:flex hidden space-x-8">
-          {["Home", "About", "Expirience", "ContactUs"].map((item, index) => (
-            <motion.a
-              key={item}
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                type: "spring",
-                stiffness: 100,
-                damping: 20,
-                delay: 0.7 + index * 0.2,
-              }}
-              className="relative text-gray-800 dark:text-gray-200 hover:violet-600 dark:hover:text-violet-600 font-medium transition-colors duration-300 group "
-              href="#"
-            >
-              {item}
-              <span className="absolute bottom-0  left-0 w-0 h-0.5 bg-violet-600 group-hover:w-full transition-all duration-300"></span>
-            </motion.a>
-          ))}
+          {["Home", "About", "Expirience", "ContactUs"].map((item, index) => {
+            const isContact = item === "ContactUs";
+
+            return (
+              <motion.a
+                key={item}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 20,
+                  delay: 0.7 + index * 0.2,
+                }}
+                className="relative text-gray-800 dark:text-gray-200 hover:text-violet-600 dark:hover:text-violet-600 font-medium transition-colors duration-300 group cursor-pointer"
+                {...(isContact
+                  ? { onClick: kondisiformBuka }
+                  : { href: `#${item.toLowerCase()}` })}
+              >
+                {item}
+                <span className="absolute bottom-0  left-0 w-0 h-0.5 bg-violet-600 group-hover:w-full transition-all duration-300"></span>
+              </motion.a>
+            );
+          })}
         </nav>
 
         {/* Sosial Media */}
@@ -160,7 +184,7 @@ const Header = () => {
                 onClick={toggleMenu}
                 className="text-gray-300 font-medium py-2"
                 key={item}
-                href="#"
+                href={`#${item.toLowerCase()}`}
               >
                 {item}
               </a>
@@ -218,49 +242,54 @@ const Header = () => {
                 </button>
               </div>
               {/* Input User */}
-              <form className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label className="block mb-2 text-sm font-medium text-gray-300">
                     Nama
                   </label>
                   <input
                     type="text"
-                    id="Nama"
                     placeholder="Nama"
-                    className=" w-full text  rounded-lg px-4 py-2 
-                  border-gray-600 focus:ring-2 focus:ring-violet-600 
-                focus:border-violet-600 bg-gray-700"
+                    value={nama}
+                    onChange={(e) => setNama(e.target.value)}
+                    className="w-full rounded-lg px-4 py-2 border-gray-600 focus:ring-2 focus:ring-violet-600 focus:border-violet-600 bg-gray-700"
+                    required
                   />
                 </div>
-                {/* Email */}
+
                 <div>
                   <label className="block mb-2 text-sm font-medium text-gray-300">
                     Email
                   </label>
                   <input
-                    type="text"
-                    id="Email"
-                    placeholder="Email"
-                    className=" w-full text  rounded-lg px-4 py-2 
-                  border-gray-600 focus:ring-2 focus:ring-violet-600 
-                focus:border-violet-600 bg-gray-700"
+                    type="Subject"
+                    placeholder="Subject"
+                    value={Subject}
+                    onChange={(e) => setSubject(e.target.value)}
+                    className="w-full rounded-lg px-4 py-2 border-gray-600 focus:ring-2 focus:ring-violet-600 focus:border-violet-600 bg-gray-700"
+                    required
                   />
                 </div>
+
                 <div>
                   <label className="block mb-2 text-sm font-medium text-gray-300">
                     Pesan
                   </label>
                   <textarea
                     rows={4}
-                    id="Pesan"
                     placeholder="Pesan"
-                    className=" w-full text  rounded-lg px-4 py-2 
-                  border-gray-600 focus:ring-2 focus:ring-violet-600 
-                focus:border-violet-600 bg-gray-700"
+                    value={pesan}
+                    onChange={(e) => setPesan(e.target.value)}
+                    className="w-full rounded-lg px-4 py-2 border-gray-600 focus:ring-2 focus:ring-violet-600 focus:border-violet-600 bg-gray-700"
+                    required
                   />
                 </div>
+
                 <div className="justify-self-center">
-                  <button className="transition hover:scale-110 hover:-translate-y-2  rounded-lg px-4 py-2 bg-gradient-to-r from-violet-600 to-violet-300 hover:to-indigo-500 duration-300 delay-100 ">
+                  <button
+                    type="submit"
+                    className="transition hover:scale-110 hover:-translate-y-2 rounded-lg px-4 py-2 bg-gradient-to-r from-violet-600 to-violet-300 hover:to-indigo-500 duration-300 delay-100"
+                  >
                     Kirim
                   </button>
                 </div>

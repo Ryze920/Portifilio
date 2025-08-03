@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 // import Image from "next/Image";
 const Foto = () => {
   return (
-    <div className="w-full relative mix-blend-color-dodge">
+    <div className="w-full relative  ">
       {/* Foto */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -24,7 +24,7 @@ const Foto = () => {
           <img
             src={Fotosaya}
             alt="Foto Profil"
-            className="w-full h-auto rounded-full object-contain mix-blend-lighten"
+            className="w-full h-auto rounded-full object-contain mix-blend-color-dodge "
           />
         </motion.div>
 

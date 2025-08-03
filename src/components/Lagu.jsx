@@ -1,21 +1,31 @@
 import React, { useState, useRef, useEffect } from "react";
 import { dblagu } from "../data/dblagu.js";
 
+// Tambahkan CSS untuk animasi putar di sini
+// Kamu bisa meletakkannya di file CSS global atau menggunakan styled-components
+// Jika menggunakan Tailwind, kita bisa buatnya di tailwind.config.js atau di file CSS tambahan
+const rotatingImageStyle = `
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+`;
+
 const Lagu = () => {
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  // State untuk mengontrol tampilan modal konfirmasi
   const [showModal, setShowModal] = useState(true);
 
   const audioRef = useRef(null);
 
-  // useEffect untuk memuat lagu acak saat komponen pertama kali dirender
   useEffect(() => {
-    // Pilih lagu acak saat komponen dimuat
     const randomIndex = Math.floor(Math.random() * dblagu.length);
     setCurrentSongIndex(randomIndex);
 
-    // Tambahkan event listener untuk memutar lagu berikutnya secara otomatis
     const handleSongEnded = () => {
       handleNext();
     };
@@ -23,10 +33,9 @@ const Lagu = () => {
     const audio = audioRef.current;
     if (audio) {
       audio.addEventListener("ended", handleSongEnded);
-      audio.volume = 0.5; // Mengatur volume ke 50%
+      audio.volume = 0.5;
     }
 
-    // Fungsi cleanup untuk menghapus event listener saat komponen di-unmount
     return () => {
       if (audio) {
         audio.removeEventListener("ended", handleSongEnded);
@@ -34,7 +43,6 @@ const Lagu = () => {
     };
   }, []);
 
-  // useEffect untuk memperbarui sumber audio setiap kali currentSongIndex berubah
   useEffect(() => {
     if (audioRef.current && dblagu.length > 0) {
       audioRef.current.src = dblagu[currentSongIndex].audio;
@@ -44,9 +52,8 @@ const Lagu = () => {
     }
   }, [currentSongIndex, isPlaying]);
 
-  // Fungsi untuk memulai pemutaran lagu setelah konfirmasi dari modal
   const handlePlayConfirmed = () => {
-    setShowModal(false); // Sembunyikan modal setelah konfirmasi
+    setShowModal(false);
     audioRef.current
       .play()
       .then(() => {
@@ -60,8 +67,6 @@ const Lagu = () => {
 
   const handlePlayPause = () => {
     if (audioRef.current.paused) {
-      // Jika diputar dari tombol play/pause (bukan dari modal),
-      // kita bisa langsung memutar karena sudah ada interaksi user
       audioRef.current
         .play()
         .then(() => {
@@ -101,6 +106,8 @@ const Lagu = () => {
 
   return (
     <div>
+      <style>{rotatingImageStyle}</style>
+
       {/* Modal Konfirmasi */}
       {showModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
@@ -117,7 +124,7 @@ const Lagu = () => {
               </button>
               <button
                 onClick={handlePlayConfirmed}
-                className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+                className="bg-violet-500 hover:bg-violet-600 text-white px-4 py-2 rounded"
               >
                 Ya, Putar Musik
               </button>
@@ -126,8 +133,8 @@ const Lagu = () => {
         </div>
       )}
 
-      {/* Konten Pemutar Musik */}
-      <div className="fixed bottom-4 right-4 z-40 bg-white p-4 rounded-xl shadow-2xl flex items-center space-x-4 max-w-sm w-full">
+      {/* Pemutar Musik untuk Desktop (muncul saat ukuran layar lg ke atas) */}
+      <div className="fixed bottom-4 right-4 z-40 bg-white p-4 rounded-xl shadow-2xl flex items-center space-x-2 max-w-sm w-full md:w-[400px] hidden lg:flex">
         <img
           className="w-16 h-16 rounded-lg object-cover shadow-md"
           src={currentSong.image}
@@ -156,7 +163,7 @@ const Lagu = () => {
           </button>
           <button
             onClick={handlePlayPause}
-            className="bg-blue-500 hover:bg-blue-600 p-2 rounded-full transition-colors"
+            className="bg-violet-500 hover:bg-violet-600 p-2 rounded-full transition-colors"
           >
             {isPlaying ? (
               <svg
@@ -191,7 +198,33 @@ const Lagu = () => {
         </div>
       </div>
 
-      <audio ref={audioRef} preload="auto" />
+      {/* Tampilan Mobile (muncul di bawah ukuran lg) */}
+      <div className="fixed bottom-4 right-4 z-40 lg:hidden">
+        <div
+          onClick={handlePlayPause}
+          className="relative w-16 h-16 cursor-pointer"
+        >
+          <img
+            className={`w-full h-full rounded-full object-cover shadow-2xl transition-transform duration-500 transform ${
+              isPlaying ? "animate-[spin_4s_linear_infinite]" : ""
+            }`}
+            src={currentSong.image}
+            alt="Foto lagu"
+          />
+          {!isPlaying && (
+            <div className="absolute inset-0 flex items-center justify-center bg-black/30 rounded-full">
+              <svg
+                className="w-8 h-8 text-white"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14V8l6 4-6 4z" />
+              </svg>
+            </div>
+          )}
+        </div>
+      </div>
+      <audio ref={audioRef} />
     </div>
   );
 };

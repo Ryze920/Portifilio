@@ -3,11 +3,11 @@ import Devskills from "./Devskills";
 import Myworks from "./Myworks";
 import Mainskill from "./Devskils/Mainskill";
 
-const Tabs = () => {
+const Tabs = (expirience) => {
   const [selectedTab, setSelectedTab] = useState("devSkills"); // State untuk menyimpan tab yang dipilih
 
   return (
-    <div className="w-full mx-auto bg-transparent">
+    <div className="w-full mx-auto bg-transparent" id="expirience">
       <h1
         className="text-center text-3xl lg:text-5xl  mb-5
       font-bold p-3"

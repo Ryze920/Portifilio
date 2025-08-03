@@ -1,8 +1,8 @@
 import React from "react";
 import Foto from "./About/Foto";
-const AboutMe = () => {
+const AboutMe = (about) => {
   return (
-    <section className="h-full ">
+    <section className="h-full " id="about">
       <div className="container mx-auto h-full">
         <div className="flex flex-col xl:flex-row  m-8 items-center justify-between xl:pt-8 xl:pb-24">
           {/* TEXT */}
