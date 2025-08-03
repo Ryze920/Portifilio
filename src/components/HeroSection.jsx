@@ -10,10 +10,10 @@ const HeroSection = ({ home }) => {
     <section
       id="home"
       className="h-screen bg-transparent flex xl:flex-row flex-col-reverse items-center
-      justify-between lg:px-24 px-10 relative overflow-hidden md:mt-[50px] "
+      justify-between lg:px-24 px-10 relative overflow-hidden lg:mt-[0px] mt-50"
     >
       {/* Ledt Section */}
-      <div className="z-40 lg:mb-[0%] mb-[-55%]   min-w-[65%]">
+      <div className="z-40 lg:mb-[0%] mb-[10%]   min-w-[65%]">
         <motion.h1
           initial={{ opacity: 0, y: 80 }}
           animate={{ opacity: 1, y: 0 }}
@@ -24,7 +24,7 @@ const HeroSection = ({ home }) => {
             delay: 1.3,
             duration: 1.5,
           }}
-          className="text-5xl md:text-7xl lg:text-8xl font-bold z-10 mb-6 "
+          className="text-5xl md:text-7xl lg:text-8xl font-bold z-10 md:mb-2"
         >
           Hello! I'm <br />
           <RotatingText />
@@ -39,7 +39,7 @@ const HeroSection = ({ home }) => {
             delay: 1.8,
             duration: 1.5,
           }}
-          className="text-xl md:text-1xl lg:text-2xl text-purple-200 max-w-2xl "
+          className="text-[1rem] md:text-1xl lg:text-2xl text-purple-200 max-w-2xl "
         >
           Alongside my passion for web and app development, I am a visual
           storyteller at heart. As a freelance social media designer and video
@@ -51,7 +51,7 @@ const HeroSection = ({ home }) => {
       {/* Kanan Section */}
 
       <Spline
-        className=" absolute scale-[80%]  lg:scale-[100%] xl:right-[-28%] p-0 w-full right-0 lg:top-0 top-[-20%] lg:top-[-10%]  z-0 "
+        className=" absolute scale-[80%]  lg:scale-[100%] xl:right-[-28%] p-0 w-full right-0  top-[-20%] lg:top-[-10%]  z-0 lg:top-3"
         scene="https://prod.spline.design/A6xBgeNpMShMRxt6/scene.splinecode"
       />
     </section>

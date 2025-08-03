@@ -1,10 +1,13 @@
 import React from "react";
-import Fotosaya from "../../assets/profile2.png";
+// import Fotosaya from "../../assets/profile2.png";
+import Fotosaya from "../../assets/yosua2.jpg";
+// import Fotosaya from "../../assets/Yosua.jpg";
+
 import { motion } from "framer-motion";
 // import Image from "next/Image";
 const Foto = () => {
   return (
-    <div className="w-full relative  ">
+    <div className="w-full relative  mt-5">
       {/* Foto */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -14,7 +17,7 @@ const Foto = () => {
         }}
       >
         <motion.div
-          className="w-[298px] h-[298px] xl:w-[498px] xl:h-[498px] absolute "
+          className="w-[298px] h-[298px] xl:w-[498px] xl:h-[498px]  rounded-full absolute  overflow-hidden "
           initial={{ opacity: 0 }}
           animate={{
             opacity: 1,
@@ -24,7 +27,7 @@ const Foto = () => {
           <img
             src={Fotosaya}
             alt="Foto Profil"
-            className="w-full h-auto rounded-full object-contain mix-blend-color-dodge "
+            className="w-full h-auto rounded-full object-contain mix-blend-color-dodge top-1/2 left-0 -translate-x-[-10px] -translate-y-[11px] "
           />
         </motion.div>
 
