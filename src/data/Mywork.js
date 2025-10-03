@@ -13,13 +13,7 @@ export const mywork = [
     desc: "Web catalog for CV Cakra, an export company based in Salatiga. This project involved creating an online experience to showcase their products",
     link: "https://cakraexport.com/",
   },
-  // {
-  //   id: 2,
-  //   foto: Mathetes,
-  //   Title: "Sosial Media Desainer",
-  //   desc: "Various creative projects were worked on for a school on a freelance basis, including poster design, t-shirt design, and video editing.",
-  //   link: "https://www.instagram.com/mathetes_school?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
-  // },
+
   {
     id: 3,
     foto: Gss,
